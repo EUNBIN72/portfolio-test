@@ -47,6 +47,17 @@
 
 
 
+- totalCount : 총 글의 갯수
+- perPage : 한 페이지에 보여줄 글의 갯수
+- startIndex : 시작 인덱스 번호
+- endIndex : 끝 인덱스 번호
+- perPage : 페이지당 보여줄 행의 갯수
+- pageNum : page 번호
+- kind : 검색 종류(제목, 작성자, 내용 ...)
+- keyword : 검색어
+- totalPage : 전체 페이지 수
+- startNum : 페이징에서 시작 번호(1, 11, 21...)
+- endNum : 페이징에서 끝 번호(10, 20, 30...)
 
 
 
