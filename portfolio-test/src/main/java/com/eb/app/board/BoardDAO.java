@@ -7,6 +7,6 @@ public interface BoardDAO {
 	
 	// list
 	// <BoardVO> : 그 리스트 안에 BoardVO 타입 객체만 들어감
-	public List<BoardVO> list() throws Exception;
+	public List<BoardVO> list(Pager pager) throws Exception;
 
 }
