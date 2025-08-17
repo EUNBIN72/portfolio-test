@@ -1,5 +1,8 @@
 package com.eb.app.board.notice;
 
-public interface NoticeDAO {
+import com.eb.app.board.BoardDAO;
+
+
+public interface NoticeDAO extends BoardDAO {
 
 }
