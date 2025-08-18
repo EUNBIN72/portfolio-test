@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.eb.app.board.BoardService;
 import com.eb.app.board.BoardVO;
+import com.eb.app.commons.Pager;
 
 @Service
 
@@ -16,9 +17,11 @@ public class NoticeService implements BoardService {
 	private NoticeDAO noticeDAO;
 	
 	@Override
-	public List<BoardVO> list() throws Exception {
+	public List<BoardVO> list(Pager pager) throws Exception {
 		// DAO 계층한테 "게시글 목록을 가져와 달라"고 요청
-		return NoticeDAO.list(noticeVO);
+		Long totalCount = noticeDAO.totalCount(pager);
+		pager.makeNum(totalCount);
+		return noticeDAO.list(pager);
 	}
 
 }
