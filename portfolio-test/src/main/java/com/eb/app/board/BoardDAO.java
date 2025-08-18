@@ -2,11 +2,16 @@ package com.eb.app.board;
 
 import java.util.List;
 
+import com.eb.app.commons.Pager;
+
 // 객체를 못 만들고 타입으로 사용
 public interface BoardDAO {
 	
 	// list
 	// <BoardVO> : 그 리스트 안에 BoardVO 타입 객체만 들어감
 	public List<BoardVO> list(Pager pager) throws Exception;
+	
+	// totalCount
+	public Long totalCount(Pager pager) throws Exception;
 
 }
