@@ -8,11 +8,11 @@
 		<version>3.5.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.eb</groupId>
+	<groupId>com.winter</groupId>
 	<artifactId>app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>portfolio-test</name>
+	<name>GDJ_92_Maven</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -31,64 +31,114 @@
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
+	
+		<!-- 모든 depedency에서 버전 생략 -->
+		<!-- 스프링 AOP(관점 지향 프로그래밍) 기능 제공 -->
+		<!-- 트랜잭션 처리, 로깅, 보안 같은 횡단 관심사를 분리할 때 사용 -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>	
+		<!-- MariaDB용 JDBC 드라이버 -->
+		<!-- DB 접속 및 SQL 실행을 위한 연결을 제공 -->
+		<dependency>	
+		    <groupId>org.mariadb.jdbc</groupId>
+		    <artifactId>mariadb-java-client</artifactId>
+		</dependency>
+		<!-- 스프링 MVC와 내장 톰캣을 포함한 Web 애플리케이션 개발 기본 의존성 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- jakarta.servlet-api -->
+		<!-- MyBatis와 Spring Boot 연동 Starter -->
+		<!-- DAO에서 SQL 매핑, XML Mapper, Annotation Mapper 지원 -->
 		<dependency>
-		    <groupId>jakarta.servlet</groupId>
-		    <artifactId>jakarta.servlet-api</artifactId>
-		    <scope>provided</scope>
+		    <groupId>org.mybatis.spring.boot</groupId>
+		    <artifactId>mybatis-spring-boot-starter</artifactId>
+		    <version>3.0.5</version>
 		</dependency>
-		
-		<!-- jakarta.servlet.jsp.jstl-api -->
+		<!-- JDBC 쿼리 로그 출력 라이브러리 -->
 		<dependency>
-		    <groupId>jakarta.servlet.jsp.jstl</groupId>
-		    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+		    <groupId>org.bgee.log4jdbc-log4j2</groupId>
+		    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+		    <version>1.16</version>
 		</dependency>
-
-		<dependency>
-		    <groupId>org.glassfish.web</groupId>
-		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-		</dependency>
-
-		<dependency>
-		    <groupId>org.apache.tomcat.embed</groupId>
-		    <artifactId>tomcat-embed-jasper</artifactId>
-		    <scope>provided</scope>
-		</dependency>
-
+		<!-- 자동 리스타트, LiveReload 기능 제공 -->
+		<!-- 개발 시 코드 수정 -> 서버 자동 반영 -->
+		<!-- optional=ture : 실제 배포시에는 포함되지 않음 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		<!-- MariaDB용 JDBC 드라이버 -->
+		<!-- mariadb-java-client와 중복될 수 있음 → MariaDB만 쓸 거면 하나만 유지 권장 -->
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- JSTL 구현체 라이브러리(실제 동작 코드) -->
+		<!-- JSP에서 <c:foreach>, <c:if> 같은 JSTL 태그를 실행 가능하게 해줌 -->
+		<dependency>
+		    <groupId>org.glassfish.web</groupId>
+		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+		</dependency>
+		<!-- JSTL API 정의 라이브러리 (인터페이스 부분) -->
+		<dependency>
+		    <groupId>jakarta.servlet.jsp.jstl</groupId>
+		    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+		</dependency>
+		<!-- Servlet 표준 API -->
+		<!-- HttpServletRequest, HttpServletResponse 등 제공 -->
+		<!-- 톰캣 같은 컨테이너가 기본 제공하므로 provided로 설정 -->
+		<dependency>
+		    <groupId>jakarta.servlet</groupId>
+		    <artifactId>jakarta.servlet-api</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		<!-- JSP 파일을 서블릿으로 변환하고 실행할 수 있게 해주는 Jasper 엔진 -->
+		<!-- JSP를 쓰려면 반드시 필요 -->
+		<dependency>
+		    <groupId>org.apache.tomcat.embed</groupId>
+		    <artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		<!-- @Getter, @Setter, @Builder, @AllArgsConstructor 등 코드 자동 생성 -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- 서블릿 컨테이너 톰캣 관련 의존성 -->
+		<!-- provided → 외부 톰캣에 배포할 때는 포함하지 않고, 개발 시점/내장 실행 시만 사용 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- MyBatis와 Spring Boot 연동 Starter -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- 검증 API -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>			
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -114,6 +164,19 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+ 		<resources>
+	        <resource>
+	            <directory>src/main/java</directory>
+	            <includes>
+	                <include>**/*.xml</include>  <!-- 모든 XML 파일을 포함 -->
+	            </includes>
+	        </resource>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	        </resource>
+ 	 	 </resources>
+		  
 	</build>
 
 </project>
